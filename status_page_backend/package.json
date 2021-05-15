@@ -1,0 +1,30 @@
+{
+    "name": "asiwalkapi",
+    "version": "1.0.0",
+    "description": "simple api for asiwalk",
+    "main": "src/server.ts",
+    "scripts": {
+        "watch": "nodemon --exec ts-node ./src/server.ts",
+        "start": "tsc --watch && node dist/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsc"
+    },
+    "author": "kalinka",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "helmet": "^3.23.3",
+        "request": "^2.88.2",
+        "typescript": "^4.2.4"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.11",
+        "@types/helmet": "^4.0.0",
+        "@types/node": "^15.0.1",
+        "@types/request": "^2.48.5",
+        "nodemon": "^2.0.7",
+        "ts-node": "^9.1.1"
+    }
+}

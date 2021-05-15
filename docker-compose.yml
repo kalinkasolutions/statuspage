@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  statuspage:
+    image: kalinkasolutions/statuspage:latest
+    restart: always
+    environment:
+      - UPTIME_ROBOT_READONLY_KEY=
+      - PAGE_NAME=
+      - URL=
+    ports:
+      - 3000:3000

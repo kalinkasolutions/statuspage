@@ -1,0 +1,118 @@
+.rangeContainer {
+  display: flex;
+  flex-direction: row;
+}
+.rangeItem {
+  height: 20px;
+  width: 5px;
+  margin-left: 3px;
+  border-radius: 2px;
+}
+
+@media only all and (max-width: 1876px) {
+  .rangeContainer div:nth-child(-n + 5) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1796px) {
+  .rangeContainer div:nth-child(-n + 10) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1722px) {
+  .rangeContainer div:nth-child(-n + 15) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1642px) {
+  .rangeContainer div:nth-child(-n + 20) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1566px) {
+  .rangeContainer div:nth-child(-n + 25) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1489px) {
+  .rangeContainer div:nth-child(-n + 30) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1412px) {
+  .rangeContainer div:nth-child(-n + 35) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1335px) {
+  .rangeContainer div:nth-child(-n + 40) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1258px) {
+  .rangeContainer div:nth-child(-n + 45) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1181px) {
+  .rangeContainer div:nth-child(-n + 50) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1100px) {
+  .rangeContainer div:nth-child(-n + 55) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 1023px) {
+  .rangeContainer div:nth-child(-n + 60) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 946px) {
+  .rangeContainer div:nth-child(-n + 65) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 869px) {
+  .rangeContainer div:nth-child(-n + 70) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 789px) {
+  .rangeContainer div:nth-child(-n + 75) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 688px) {
+  .rangeContainer div:nth-child(-n + 80) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 587px) {
+  .rangeContainer div:nth-child(-n + 85) {
+    display: none;
+  }
+}
+
+@media only all and (max-width: 487px) {
+  .rangeContainer {
+    display: none;
+  }
+}

@@ -1,0 +1,83 @@
+.app {
+  background-color: #131a26;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: calc(20px + 1vmin);
+  line-height: calc(20px + 1vmin);
+}
+
+h2 {
+  margin: 0;
+  font-size: calc(15px + 1vmin);
+}
+
+header {
+  margin-top: 2em;
+  width: 80%;
+}
+
+.card {
+  padding: 2em;
+  border-radius: 10px;
+  background-color: #212937;
+  min-width: 80%;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+.cardTitle {
+  width: 80%;
+}
+
+.overallStatusWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.overallStatus {
+  min-height: 40px;
+  min-width: 40px;
+  max-height: 40px;
+  max-width: 40px;
+  border-radius: 50%;
+}
+
+.overallStatusText {
+  margin-left: 2em;
+}
+
+.monitorWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerWrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #131a26;
+  height: 3em;
+  font-size: calc(10px + 1vmin);
+}
+
+.timePeriodHeader {
+  color: #6b7b94;
+  font-size: calc(12px + 1vmin);
+}
+.cardMargin {
+  margin-bottom: 3em;
+}

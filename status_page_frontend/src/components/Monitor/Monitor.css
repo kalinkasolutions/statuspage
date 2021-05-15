@@ -1,0 +1,36 @@
+.monitor {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  line-height: 20px;
+}
+.uptime {
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  justify-content: flex-start;
+}
+
+.marginLeft {
+  margin-left: 1em;
+}
+.marginRight {
+  margin-right: 1em;
+}
+
+.currentStatus {
+  min-height: 20px;
+  min-width: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  margin-left: 1em;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .monitor {
+    justify-content: space-between;
+  }
+}
