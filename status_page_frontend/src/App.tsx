@@ -3,12 +3,15 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import Monitor from './components/Monitor/Monitor';
 import ApiResponse from './types/ApiResponse';
+import { useInterval } from './Util/Intervall';
 import { getCurrentOverallStatus, getOverallStatusPostText, getOverallStatusPreText } from './Util/StatusHelper';
 
 const App = () => {
-
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : window.location.origin;
   const [data, setData] = useState<ApiResponse>({ overAllStatus: 1, statusPageName: "", monitors: [] });
+  const [seconds, setSeconds] = useState<number>(0);
+  const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleString())
+
 
   const getData = async () => {
     const fetchedItems = await fetch(`${BASE_URL}/uptimerobot/stats`, {
@@ -25,12 +28,22 @@ const App = () => {
     getData();
   }, []);
 
+  useInterval(() => {
+    setSeconds(seconds + 1);
+  }, 1000);
+
+  useInterval(() => {
+    setSeconds(0);
+    setLastUpdate(new Date().toLocaleString());
+    getData();
+  }, 1000 * 60);
 
   return (
     <>
       <div className="app">
         <header>
           <h1>{data.statusPageName}</h1>
+          <span>Last updated {lastUpdate} | Next update in {seconds} seconds</span>
         </header>
         <div className="overallStatusWrapper card">
           <div className="overallStatus" style={getCurrentOverallStatus(data.overAllStatus, "backgroundColor")}></div>
