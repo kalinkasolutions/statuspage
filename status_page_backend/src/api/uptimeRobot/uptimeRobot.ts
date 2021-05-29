@@ -19,18 +19,14 @@ export enum OverallStatus {
   Down = 3,
 }
 
-const getCustomUptimeRanges = () => {
-  var ranges = [];
-  for (var i = 90; i >= 0; i--) {
-    var current = new Date();
-    current.setHours(0);
-    current.setMinutes(0);
-    current.setSeconds(0);
-    current.setMilliseconds(0);
+const getCustomUptimeRanges = (requestDate: Date) => {
+  const ranges = [];
+  for (let i = 90; i >= 0; i--) {
+    const current = new Date(requestDate);
     current.setDate(current.getDate() - i);
-    var start = new Date(current);
+    const start = new Date(current);
     start.setDate(start.getDate() - 1);
-    var end = new Date(current);
+    const end = new Date(current);
     ranges.push(`${start.getTime() / 1000}_${end.getTime() / 1000}`);
   }
   return ranges.join("-");
@@ -52,26 +48,29 @@ const getOverallStatus = (monitors: UptimeRobotMonitor[]): OverallStatus => {
   return OverallStatus.Down;
 };
 
-const options = {
-  method: "POST",
-  url: "https://api.uptimerobot.com/v2/getMonitors",
-  headers: {
-    "cache-control": "no-cache",
-    "content-type": "application/json",
-  },
-  form: {
-    api_key: config().uptimeRobotReadonlyKey,
-    custom_uptime_ranges: getCustomUptimeRanges(),
-    custom_uptime_ratios: 90,
-    format: "json",
-  },
+const getOptions = (requestDate: Date) => {
+  return {
+    method: "POST",
+    url: "https://api.uptimerobot.com/v2/getMonitors",
+    headers: {
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+    },
+    form: {
+      api_key: config().uptimeRobotReadonlyKey,
+      custom_uptime_ranges: getCustomUptimeRanges(requestDate),
+      custom_uptime_ratios: 90,
+      format: "json",
+    },
+  };
 };
 
 export default Router().get(
   "/stats",
   async (req: Request, res: Response<ApiResponse>): Promise<void> => {
     try {
-      const body = await getUptemeRobotMonitors();
+      const requestDate = new Date();
+      const body = await getUptemeRobotMonitors(requestDate);
       const response: ApiResponse = {
         overAllStatus: getOverallStatus(body.monitors),
         statusPageName: config().pageName,
@@ -79,8 +78,15 @@ export default Router().get(
           custom_down_durations: Number(m.custom_down_durations),
           custom_uptime_ranges: m.custom_uptime_ranges
             .split("-")
-            .map((ur) => Number(ur)),
-          custom_uptime_ratio: Number(m.custom_uptime_ratio),
+            .map((ur, i) => {
+              const date = new Date(requestDate);
+              date.setDate(date.getDate() + i - 90);
+              return {
+                ratio: Number(ur),
+                dateTime: date.toISOString(),
+              };
+            }),
+          custom_uptime_ratio: Number(Number(m.custom_uptime_ratio).toFixed(2)),
           friendly_name: m.friendly_name,
           interval: m.interval,
           status: m.status,
@@ -94,9 +100,11 @@ export default Router().get(
   }
 );
 
-const getUptemeRobotMonitors = async (): Promise<UptimeRobotResponse> => {
+const getUptemeRobotMonitors = async (
+  requestDate: Date
+): Promise<UptimeRobotResponse> => {
   return new Promise((res, rej) => {
-    request(options, (error, response, body) => {
+    request(getOptions(requestDate), (error, response, body) => {
       if (error) {
         console.log(error);
         rej(error);
