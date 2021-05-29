@@ -27,6 +27,7 @@ header {
   margin-top: 2em;
   width: 80%;
   justify-content: space-between;
+  line-height: 100%;
 }
 
 header span {
