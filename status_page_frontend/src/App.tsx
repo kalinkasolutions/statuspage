@@ -36,14 +36,14 @@ const App = () => {
     setSeconds(60);
     setLastUpdate(new Date().toLocaleString());
     getData();
-  }, 1000 * 60);
+  }, 1000 * 60.5);
 
   return (
     <>
       <div className="app">
         <header>
           <h1>{data.statusPageName}</h1>
-          <span>Last updated {lastUpdate} | Next update in {seconds} seconds</span>
+          <span className="padding">Last updated {lastUpdate} | Next update in <span className="noWrap">{seconds} seconds</span></span>
         </header>
         <div className="overallStatusWrapper card">
           <div className="overallStatus" style={getCurrentOverallStatus(data.overAllStatus, "backgroundColor")}></div>

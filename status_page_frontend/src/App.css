@@ -32,7 +32,6 @@ header {
 
 header span {
   align-self: flex-end;
-  padding-left: 10px;
 }
 
 .card {
@@ -89,4 +88,25 @@ header span {
 }
 .cardMargin {
   margin-bottom: 3em;
+}
+
+@media only all and (max-width: 900px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    width: 80%;
+    justify-content: space-between;
+    line-height: 100%;
+  }
+  header span {
+    align-self: flex-start;
+  }
+  header .padding {
+    padding-top: 10px;
+  }
+  header .noWrap {
+    display: inline-block;
+    white-space: nowrap;
+  }
 }
