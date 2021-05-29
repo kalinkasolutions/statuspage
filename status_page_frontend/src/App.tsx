@@ -9,7 +9,7 @@ import { getCurrentOverallStatus, getOverallStatusPostText, getOverallStatusPreT
 const App = () => {
   const BASE_URL = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : window.location.origin;
   const [data, setData] = useState<ApiResponse>({ overAllStatus: 1, statusPageName: "", monitors: [] });
-  const [seconds, setSeconds] = useState<number>(0);
+  const [seconds, setSeconds] = useState<number>(60);
   const [lastUpdate, setLastUpdate] = useState<string>(new Date().toLocaleString())
 
 
@@ -29,11 +29,11 @@ const App = () => {
   }, []);
 
   useInterval(() => {
-    setSeconds(seconds + 1);
+    setSeconds(seconds - 1);
   }, 1000);
 
   useInterval(() => {
-    setSeconds(0);
+    setSeconds(60);
     setLastUpdate(new Date().toLocaleString());
     getData();
   }, 1000 * 60);
