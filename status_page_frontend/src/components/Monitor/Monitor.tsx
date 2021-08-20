@@ -15,7 +15,7 @@ const Monitor: React.FC<MonitorProps> = (props) => {
     <div className="monitor">
       <div>{item.friendly_name}</div>
       <div className="uptime">
-        <div className="marginRight" style={getStatusColor(item.custom_uptime_ratio, "color")}>{item.custom_uptime_ratio}%</div>
+        <div className="marginRight" style={getStatusColor(item.custom_uptime_ratio, "color")}>{item.custom_uptime_ratio.toFixed(2)}%</div>
         <RangeItems uptimeRanges={item.custom_uptime_ranges} />
         <div className="currentStatus paddingLeft" style={getCurrentStatus(item.status, "backgroundColor")}></div>
         <div className="marginLeft" style={getCurrentStatus(item.status, "color")}>{getCurrentStatusText(item.status)}</div>
