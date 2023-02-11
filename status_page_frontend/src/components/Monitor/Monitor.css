@@ -18,6 +18,7 @@
 }
 .marginRight {
   margin-right: 1em;
+  min-width: 72px;
 }
 
 .currentStatus {
